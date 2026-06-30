@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 8 Monthsary, Sayang! ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffeef2;
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ANIMASI SURPRISE OVERLAY (AWAL BUKA) --- */
+        #surprise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffccd5, #ffeef2);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .envelope-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            border: 3px dashed #ff477e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .envelope-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .envelope-box h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff477e;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .envelope-box p {
+            font-size: 0.9rem;
+            color: #6b6b6b;
+            margin-bottom: 25px;
+        }
+
+        .open-btn {
+            background: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .open-btn:hover {
+            background: #ff7096;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 126, 0.6);
+        }
+
+        /* --- KONTEN UTAMA WEBSITE --- */
+        /* Hiasan background hati melayang */
+        .bg-heart {
+            position: fixed;
+            font-size: 24px;
+            color: rgba(255, 105, 180, 0.3);
+            animation: float 6s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header / Hero Section */
+        header {
+            text-align: center;
+            padding: 100px 20px 50px 20px;
+            background: linear-gradient(to bottom, #ffccd5, #ffeef2);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff477e;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #ff7096;
+        }
+
+        /* Countdown / Timer Singkat */
+        .counter {
+            background: white;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            font-weight: 600;
+            color: #ff477e;
+            border: 2px dashed #ff99b6;
+        }
+
+        /* Kolase Foto Galeri */
+        .gallery-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 25px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transform: rotate(var(--rotation));
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Hiasan Love di Foto */
+        .photo-card::before {
+            content: '❤️';
+            position: absolute;
+            top: -10px;
+            left: 45%;
+            font-size: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #6b6b6b;
+            font-style: italic;
+        }
+
+        /* Pesan Penutup */
+        .love-letter {
+            text-align: center;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            border: 1px solid #ffccd5;
+            position: relative;
+        }
+
+        .love-letter::after {
+            content: '💖✨💖';
+            display: block;
+            margin-top: 15px;
+            font-size: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85rem;
+            color: #ff7096;
+        }
+
+        /* Tombol Kontrol Musik Mute/Unmute di pojok bawah */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 71, 126, 0.9);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .music-control:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemen Audio Musik -->
+    <audio id="bg-music" loop>
+        <source src="about you.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <!-- Tombol Kontrol Musik -->
+    <button class="music-control" id="music-btn" onclick="toggleMusic()" style="display: none;">🎵</button>
+
+    <div id="surprise-overlay">
+        <div class="envelope-box">
+            <span class="envelope-icon">✉️❤️</span>
+            <h2>Ini Untuk Kamu...</h2>
+            <p>Pacarmu udah sesuatu khusus untuk merayakan hari ini.</p>
+            <button class="open-btn" onclick="bukaKejutan()">Buka Pesan ❤️</button>
+        </div>
+    </div>
+
+    <div class="bg-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+    <div class="bg-heart" style="left: 30%; animation-delay: 2s;">💖</div>
+    <div class="bg-heart" style="left: 55%; animation-delay: 1s;">❤️</div>
+    <div class="bg-heart" style="left: 80%; animation-delay: 3s;">💕</div>
+
+    <header>
+        <h1>Happy 8 Monthsary!</h1>
+        <div class="subtitle">OUR SWEET MEMORIES</div>
+        <div class="counter">✨ 8 Bulan / 240+ Hari Bersamamu ✨</div>
+    </header>
+
+    <div class="gallery-container">
+        <div class="collage">
+            
+            <div class="photo-card" style="--rotation: -3deg;">
+                <img src="foto1.jpg" alt="Awal Cerita">
+                <div class="caption">"Di mana semuanya dimulai..."</div>
+            </div>
+
+            <div class="photo-card" style="--rotation: 2deg;">
+                <img src="foto2.jpg" alt="Kencan Pertama">
+                <div class="caption">"date yang bikin saltink 🥰"</div>
+            </div>
+
+            <div class="photo-card" style="--rotation: -1deg;">
+                <img src="foto3.jpg" alt="Foto Lucu">
+                <div class="caption">"Muka jelek kite yang bikin kangen terus"</div>
+            </div>
+
+            <div class="photo-card" style="--rotation: 4deg;">
+                <img src="foto4.jpg" alt="Jalan-jalan">
+                <div class="caption">"Petualangan seru bareng kamu 🗺️"</div>
+            </div>
+
+            <div class="photo-card" style="--rotation: -4deg;">
+                <img src="foto5.jpg" alt="Makan Bareng">
+                <div class="caption">"Asal sama kamu, makan apa aja enak!"</div>
+            </div>
+
+            <div class="photo-card" style="--rotation: 3deg;">
+                <img src="foto6.jpg" alt="Momen Manis">
+                <div class="caption">"Terima kasih udah selalu ada yaa"</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="love-letter">
+        <h3 style="color: #ff477e; margin-bottom: 15px; font-family: 'Dancing Script', cursive; font-size: 2.2rem;">Untuk Sayangku,</h3>
+        <p>ngga kerasa kita udah jalanin 8 bulan ini bareng-bareng. Ada tawa, ada ngambek dikit, apa banyak ya gataudeh hehe, tapi yang pasti ada banyak banget rasa sayang. Makasih ya udah jadi pacar yang baik, bisa ngarahin kearah yg benar.
+             *Happy 8th monthsary*, dan semoga masih banyak bulan-bulan manis lainnya di depan kita! I love you sayanggg! 💋</p>
+    </div>
+
+    <footer>
+        Grateful for us &copy; 2026 | Made with ❤️ for You
+    </footer>
+
+    <script>
+        const musik = document.getElementById('bg-music');
+        const tombolMusik = document.getElementById('music-btn');
+
+        // Fungsi untuk menghilangkan overlay surprise & putar musik
+        function bukaKejutan() {
+            const overlay = document.getElementById('surprise-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.transform = 'scale(1.1)';
+            
+            // Putar musik saat tombol ditekan
+            musik.play().then(() => {
+                tombolMusik.style.display = 'flex'; // Munculkan tombol kontrol musik
+            }).catch(error => {
+                console.log("Musik gagal berputar otomatis karena kebijakan browser:", error);
+            });
+
+            // Hapus element dari DOM setelah animasi selesai agar tidak mengganggu klik di web
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 800);
+        }
+
+        // Fungsi pause atau mainkan musik lewat tombol kontrol di pojok bawah
+        function toggleMusic() {
+            if (musik.paused) {
+                musik.play();
+                tombolMusik.innerText = '🎵';
+            } else {
+                musik.pause();
+                tombolMusik.innerText = '🔇';
+            }
+        }
+
+        // Membuat hati tambahan secara acak
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerText = ['❤️', '💖', '💕', '✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }, 2000);
+    </script>
+</body>
+</html>
